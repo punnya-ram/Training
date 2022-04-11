@@ -8,4 +8,5 @@ public interface CrudRepository1 {
 	public Book findById(int id);
 	public Boolean remove(Book book);
 	public List<Book> findAll();
+	public Book update(Book oldbook,Book recentBook);
 }

@@ -7,7 +7,13 @@ import com.training.ifaces.CrudRepository1;
 import com.training.services.BookService;
 
 public class Application {
-
+	public static void print(List<Book>books) {
+		for(Book eachBook:books) {
+			System.out.println(eachBook);
+			
+		}
+		
+	}
 	public static void main(String[] args) {
 		Book java=new Book(101,"Java","suba",450);
 		Book spring=new Book(102,"Spring","Mad",650);
@@ -27,8 +33,23 @@ public class Application {
 		}
 		Book foundBook=service.findById(102);{
 			System.out.println(foundBook);
+			service.remove(python);
+			System.out.println("=========");
+			print(service.findAll());
+			Book react=new Book(105,"ReactJS","Rahul kanwal",6950);
+			service.update(react, java);
+			System.out.println("=========AFTER UPDATE==========");
+			Book reactNew=new Book(205,"r","r",12220);
+			service.update(react,reactNew);
+			System.out.println("========after update====s");
+			print(service.findAll());
+			
+			
+
+			}
+		
 		}
 
 	}
 
-}
+

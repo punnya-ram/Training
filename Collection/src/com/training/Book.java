@@ -1,6 +1,6 @@
 package com.training;
 
-public class Book {
+public class Book implements Comparable<Book> {
 	private int bookNumber;
 	private String bookName;
 	private String author;
@@ -44,6 +44,13 @@ public class Book {
 	public String toString() {
 		return "Book [bookNumber=" + bookNumber + ", bookName=" + bookName + ", author=" + author + ", price=" + price
 				+ "]";
+	}
+	@Override
+	public int compareTo(Book otherObj) {
+//		if(otherObj.bookNumber<this.bookNumber)return -1;
+//		if(otherObj.bookNumber<this.bookNumber)return 1;
+		//return 0;
+		return otherObj.bookName.compareTo(this.bookName);
 	}
 	
 }

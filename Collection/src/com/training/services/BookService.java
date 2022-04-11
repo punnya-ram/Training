@@ -35,14 +35,25 @@ public class BookService implements CrudRepository1 {
 
 	@Override
 	public Boolean remove(Book book) {
-		// TODO Auto-generated method stub
-		return null;
+		return bookList.remove(book);
+
 	}
+	
 
 	@Override
 	public List<Book> findAll() {
 		// TODO Auto-generated method stub
 		return this.bookList;
+	}
+
+	@Override
+	public Book update(Book oldbook,Book newBook) {
+		if(this.bookList.contains(oldbook)) {
+			//System.out.println("Inside if block #######3 ");
+			int idxPos=this.bookList.indexOf(oldbook);
+			this.bookList.set(idxPos,newBook);
+		}
+		return newBook;
 	}
 
 }
