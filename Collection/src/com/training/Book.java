@@ -7,7 +7,7 @@ public class Book implements Comparable<Book> {
 	private double price;
 	public Book() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 	public Book(int bookNumber, String bookName, String author, double price) {
 		super();
@@ -47,10 +47,10 @@ public class Book implements Comparable<Book> {
 	}
 	@Override
 	public int compareTo(Book otherObj) {
-//		if(otherObj.bookNumber<this.bookNumber)return -1;
-//		if(otherObj.bookNumber<this.bookNumber)return 1;
-		//return 0;
-		return otherObj.bookName.compareTo(this.bookName);
+	if(otherObj.bookNumber<this.bookNumber)return -1;		
+	if(otherObj.bookNumber<this.bookNumber)return 1;
+	return 0;
+		//return otherObj.bookName.compareTo(this.bookName);
 	}
 	
 }

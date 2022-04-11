@@ -1,11 +1,19 @@
 package com.training;
 import java.util.*;
+import com.training.utils.BookNameComparator;
 
 import com.training.ifaces.CrudRepository1;
 import com.training.services.BookService;
 public class App {
+	public static void print1(List<Book>books) {
+		for(Book eachBook:books) {
+			System.out.println(eachBook);
+			
+		}
+	}
 
 	public static void main(String[] args) {
+		
 		List<String> names=new ArrayList<>();
 		names.add("Ramesh");
 		names.add("Anan");
@@ -29,11 +37,21 @@ public class App {
 		System.out.println(service.add(python));
 		List<Book> bookList =service.findAll();
 		Collections.sort(bookList);
+		System.out.println("sort by book name");
 		System.out.println(bookList);
+		print1(bookList);
+		Collections.sort(bookList,new BookNameComparator());
+		System.out.println("Sort by book name");
+		print1(bookList);
 		
 
 
 
+	}
+
+	private static void print(List<Book> bookList) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
