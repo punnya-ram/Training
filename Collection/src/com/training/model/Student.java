@@ -70,7 +70,7 @@ public class Student implements Comparable<Student>{
 	@Override
 	public int compareTo(Student otherObj) {
 		// TODO Auto-generated method stub
-		return otherObj.fristName.compareTo(this.fristName);
+		return this.fristName.compareTo(otherObj.fristName);
 	}
 	
 	
