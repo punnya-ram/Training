@@ -1,10 +1,25 @@
 package com.training;
 
-public class Book implements Comparable<Book> {
+import java.io.Serializable;
+
+public class Book implements Comparable<Book>,Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2022L;
 	private int bookNumber;
 	private String bookName;
 	private String author;
 	private double price;
+	private double discount;
+	public Book(int bookNumber, String bookName, String author, double price, double discount) {
+		super();
+		this.bookNumber = bookNumber;
+		this.bookName = bookName;
+		this.author = author;
+		this.price = price;
+		this.discount = discount;
+	}
 	public Book() {
 		super();
 		
