@@ -7,8 +7,10 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 
 import com.example.dao.MemberRespository;
-import com.example.entity.Member;
-
+import com.example.demo.services.ProductService;
+import  com.example.entity.Member;
+import com.example.entity.Product;
+import com.example.util.ConnectionFactory;
 
 /**
  * Hello world!
@@ -16,16 +18,44 @@ import com.example.entity.Member;
  */
 public class App 
 {
-    public static void main( String[] args )
-    {
-    	try {
-			Connection con = DriverManager.getConnection("Jdbc:oracle:thin:@10.90.1.105:1521/DEV","HR","HR");
-			MemberRespository res=new MemberRespository(con);
-			
-			res.findAll().forEach(System.out::println);
-			
-    }catch(SQLException e) {
+	public static void member() {
+		Connection con;
+    	con =ConnectionFactory.getOracleConnection();
+		MemberRespository res=new MemberRespository(con);
+		System.out.println(con);
+		Member toAdd = new Member(29,"yuvaraj","sipcot",LocalDate.of(2000, 10, 28)
+				,"half",3500.0,3,1200.0);
+		
+		int addrow = res.add(toAdd);
+		
+		System.out.println("rowAdded:=" + addrow);
+		System.out.println("updated fees:="+res.updatePriceByname("pooja",500.00));
+		
+		
+		res.findAll().forEach(System.out::println);
+
+
+    try {
+      	con=ConnectionFactory.getPostgressConnection();
+      	System.out.println(con);
+    }catch(Exception e) {
     	e.printStackTrace();
     }
-}
+		
+	}
+	public static void product() {
+		Connection con;
+		con =ConnectionFactory.getPostgressConnection();
+		ProductService service=new ProductService(con);
+		Product toAdd=new  Product(94,"ups",747.00);
+		int rowAdded=service.addProduct(toAdd);
+	   System.out.println("Row Added :="+rowAdded);
+		
+	   service.findAll().forEach(System.out::println);
+		
+	}
+    public static void main( String[] args )
+    {
+    	product();
+    }
 }

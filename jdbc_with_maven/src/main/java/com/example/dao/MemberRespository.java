@@ -16,11 +16,30 @@ public class MemberRespository implements CrudRepository<Member> {
 		this.con = con;
 	}
 
-	public int add(Member obj) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int add(Member member) {
+		int addrow=0;
+		String sql = "insert into SHANMAMEMBER3 values(?,?,?,?,?,?,?,?)";
+		try(PreparedStatement pstmt = con.prepareStatement(sql)){
+			pstmt.setInt(1,member.getMemberId());
+			pstmt.setString(2,member.getMemberName());
+			pstmt.setString(3,member.getMemberAddress());
+			//pstmt.setDate(4, member.getAccountOpenDate());
+			pstmt.setDate(4,Date.valueOf(member.getAccountOpenDate()));
+			pstmt.setString(5,member.getMemberShipType());
+			pstmt.setDouble(6, member.getFeesPaid());
+			pstmt.setInt(7,member.getMaxBookAllowed());
+			pstmt.setDouble(8, member.getPenaltyAmount());
+			
+			addrow = pstmt.executeUpdate();
+		}catch(SQLException e) { 
+			e.printStackTrace();
+		}
+		
+		
+		return addrow;
 	}
-
+	
+		
 	public List<Member> findAll() {
 		List<Member> memberList=new ArrayList<Member>();
 		String sql="select * from PUNNYAMEMBER2";
@@ -55,6 +74,27 @@ public class MemberRespository implements CrudRepository<Member> {
 		return null;
 	}
 
+	public int updatePriceByname(String memberName,Double newfeesPaid) {
+		int rowsUpdated=0;
+		String sql="update SHANMAMEMBER3 set fees_paid=? where member_Name=?";
+try(PreparedStatement pstmt=con.prepareStatement(sql)){
+			
+			pstmt.setDouble(1,newfeesPaid);
+			pstmt.setString(2,memberName);
+			
+		 rowsUpdated=pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return rowsUpdated;
+		
+		
+	}
+
+	@Override
 	public int update(int Id, Member obj) {
 		// TODO Auto-generated method stub
 		return 0;
