@@ -1,12 +1,14 @@
 package com.mobile.services;
 
+import java.util.List;
+
 import com.mobile.Customer;
 
 public class LoanApplication {
 	private int applicationNumber;
 	private  Customer customer;
 	private double loanAmount;
-	public LoanApplication() {
+	public LoanApplication(int applicationNumber2, Customer customer1, List<LoanApplication> loanList) {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -15,6 +17,9 @@ public class LoanApplication {
 		this.applicationNumber = applicationNumber;
 		this.customer = customer;
 		this.loanAmount = loanAmount;
+	}
+	public LoanApplication(int applicationnumber2, int customer2, double loanamount2) {
+		// TODO Auto-generated constructor stub
 	}
 	@Override
 	public String toString() {

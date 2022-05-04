@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 
 import com.example.dao.MemberRespository;
+import com.example.demo.services.Invoice;
 import com.example.demo.services.ProductService;
 import  com.example.entity.Member;
 import com.example.entity.Product;
@@ -19,30 +20,30 @@ import com.example.util.ConnectionFactory;
 public class App 
 {
 	public static void member() {
-		Connection con;
-    	con =ConnectionFactory.getOracleConnection();
-		MemberRespository res=new MemberRespository(con);
-		System.out.println(con);
-		Member toAdd = new Member(29,"yuvaraj","sipcot",LocalDate.of(2000, 10, 28)
-				,"half",3500.0,3,1200.0);
+		//Connection con;
+    	//con =ConnectionFactory.getOracleConnection();
+		//MemberRespository res=new MemberRespository(con);
+		//System.out.println(con);
+		//Member toAdd = new Member(29,"yuvaraj","sipcot",LocalDate.of(2000, 10, 28)
+				//,"half",3500.0,3,1200.0);
 		
-		int addrow = res.add(toAdd);
+		//int addrow = res.add(toAdd);
 		
-		System.out.println("rowAdded:=" + addrow);
-		System.out.println("updated fees:="+res.updatePriceByname("pooja",500.00));
+		//System.out.println("rowAdded:=" + addrow);
+		//System.out.println("updated fees:="+res.updatePriceByname("pooja",500.00));
 		
 		
-		res.findAll().forEach(System.out::println);
+		//res.findAll().forEach(System.out::println);
 
 
-    try {
-      	con=ConnectionFactory.getPostgressConnection();
-      	System.out.println(con);
-    }catch(Exception e) {
-    	e.printStackTrace();
+    //try {
+      //	con=ConnectionFactory.getPostgressConnection();
+      	//System.out.println(con);
+    //}catch(Exception e) {
+    	//e.printStackTrace();
     }
 		
-	}
+	//}
 	public static void product() {
 		Connection con;
 		con =ConnectionFactory.getPostgressConnection();
@@ -54,8 +55,15 @@ public class App
 	   service.findAll().forEach(System.out::println);
 		
 	}
-    public static void main( String[] args )
-    {
-    	product();
+public static void main( String[] args ) {
+		
+		Connection con;
+    Connection con1 = ConnectionFactory.getOracleConnection();
+	
+	ProductService service = new ProductService(con1);
+	Product laddu=new Product(01,"laddu",89);
+	Invoice mani=new Invoice(03, " mani", 6,4);
+	
+	service.usingTxn (laddu,mani);
     }
 }

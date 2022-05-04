@@ -13,6 +13,7 @@ public class Application {
 			Connection con = DriverManager.getConnection("Jdbc:oracle:thin:@10.90.1.105:1521/DEV","HR","HR");
 			ProductService service=new ProductService(con);
 			Product toAdd=new  Product(94,"ups",747.00);
+			
 			//int rowAdded=service.addProduct(toAdd);
 			//System.out.println("Row Added :="+rowAdded);
 			

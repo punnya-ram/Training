@@ -99,12 +99,63 @@ try(PreparedStatement pstmt=con.prepareStatement(sql)){
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
-		
-		
-		
-		
 		return productList;
 		
 	}
-
+	public int  usingTxn(Product prd1,Invoice invoice) {
+		int rowAdded =0;
+		//g int productAddCount = 0;
+		
+		String  addProductsql = "insert into punnya_product values(?,?,?)";
+		String addInvoicesql = "insert into punnya_invoice\r\n" + 
+				" values(?,?,?,?)";
+		try(PreparedStatement prodstmt = con.prepareStatement(addProductsql);
+				PreparedStatement invpstmt = con.prepareStatement(addInvoicesql)){
+			
+			con.setAutoCommit(false);
+			
+			prodstmt.setInt(1,prd1.getProductId());
+			prodstmt.setString(2,prd1.getProductName());
+			prodstmt.setDouble(3, prd1.getPrice());
+			
+			int  productAddCount = prodstmt.executeUpdate();
+			
+			invpstmt.setInt(1, invoice.getInvoiceNumber());
+			invpstmt.setString(2, invoice.getCustomerName());
+			invpstmt.setDouble(3, invoice.getQuality());
+			invpstmt.setInt(4, invoice.getProductref());
+			
+	     invpstmt.executeUpdate();
+			
+			con.commit();
+			rowAdded = productAddCount;
+			// g System.out.println("===================");
+			System.out.println(rowAdded);
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+			try {
+				con.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		return  rowAdded;
+	}
 }
+	
+	
+	
+	
+			
+			
+
+			
+			
+			
+		
+		
+	
+
+

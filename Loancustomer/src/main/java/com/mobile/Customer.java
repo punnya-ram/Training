@@ -9,13 +9,7 @@ public class Customer {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Customer(int customerId, String customerName, long phoneNumber, double creditScore) {
-		super();
-		this.customerId = customerId;
-		this.customerName = customerName;
-		this.phoneNumber = phoneNumber;
-		this.creditScore = creditScore;
-	}
+	
 	@Override
 	public String toString() {
 		return "Customer [customerId=" + customerId + ", customerName=" + customerName + ", phoneNumber=" + phoneNumber
@@ -24,6 +18,14 @@ public class Customer {
 	public int getCustomerId() {
 		return customerId;
 	}
+	public Customer(int customerId, String customerName, long phoneNumber, double creditScore) {
+		super();
+		this.customerId = customerId;
+		this.customerName = customerName;
+		this.phoneNumber = phoneNumber;
+		this.creditScore = creditScore;
+	}
+
 	public void setCustomerId(int customerId) {
 		this.customerId = customerId;
 	}
