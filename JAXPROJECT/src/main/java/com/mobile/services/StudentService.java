@@ -27,7 +27,8 @@ public Student update(int id,Student newValue) {
 		
 		int idxPos = this.studentlist.indexOf(finfById(id).get());
 		
-		return this.studentlist.set(idxPos, newValue);
+		 this.studentlist.set(idxPos, newValue);
+		 return newValue;
 		
 	}
 	 

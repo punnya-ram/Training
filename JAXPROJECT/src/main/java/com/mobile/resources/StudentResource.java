@@ -1,10 +1,18 @@
 package com.mobile.resources;
 
 import java.util.List;
+import java.util.Map;
+
+import jakarta.ws.rs.core.Response;
+
+import org.glassfish.grizzly.http.util.HttpStatus;
 
 import com.mobile.Student;
 import com.mobile.services.StudentService;
 
+import jakarta.json.Json;
+import jakarta.json.JsonObject;
+import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
@@ -24,34 +32,49 @@ public class StudentResource {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Student> getAllStudent() {
-		return this.service.getAll();
+		return service.getAll();
 	}
 	@GET
 	@Path("/{rollNumber}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Student findById(@PathParam("rollNumber")int id) {
-		return this.service.finfById(id).orElseThrow(()->new RuntimeException("Id Not Found"));
+	public Response findById(@PathParam("rollNumber")int id) {
+		try{
+			Student entity=service.finfById(id).orElseThrow(()->new RuntimeException("Id Not Found"));
+			return Response.ok(entity).build();
+		}catch(RuntimeException e) {
+			e.printStackTrace();
+			JsonObject obj=Json.createObjectBuilder().add("ID NOT FOUND","").build();
+			return Response.ok("id not found").status(400).build();		
+			}
 	}
+
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
-	public Student add(Student student) {
-		boolean result=this.service.add(student);
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response add(Student student) {
+		boolean result=service.add(student);
 		if(result) {
-			return student;
+			return Response.ok(student).status(201).build();
 		}else {
-			return null;
+			return Response.status(400,"Not Created").build();
 		}
+		
 	}
 	@DELETE
 	@Path("/{rollNumber}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public boolean remove(@PathParam("rollNumber")  int id )
+	public Response remove(@PathParam("rollNumber")  int id )
 	{
 		
-			return service.remove(id)
-
-	;
-	}
+			boolean result= service.remove(id);
+			if(result) {
+				return Response.ok("one reCORD DELETED").build();
+			}else {
+				return Response.status(400,"Not deleted").build();
+			}
+				
+			}
+	
 	@PUT
 	@Path("/{rollNumber}")
 	@Produces(MediaType.APPLICATION_JSON)
