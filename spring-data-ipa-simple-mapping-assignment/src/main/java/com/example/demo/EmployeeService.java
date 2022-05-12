@@ -33,7 +33,12 @@ public class EmployeeService {
 	public List<Employee>findBySkill(String srchString){
 		return this.repo.findBySkillSet(srchString);
 	}
-		
+	public List<Employee>findBylocationskill_set(String locname,String skillname){
+		return this.repo.getBylocationskill(locname, skillname);
+	}
+	public List<Employee>findBySkillSetOrLocation(String srchskill,String srchloc){
+		return this.repo.findBySkillSetOrLocation(srchskill, srchloc);
+	}
 
 
 }

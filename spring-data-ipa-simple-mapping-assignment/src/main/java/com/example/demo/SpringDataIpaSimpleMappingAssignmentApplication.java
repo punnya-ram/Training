@@ -22,7 +22,11 @@ public class SpringDataIpaSimpleMappingAssignmentApplication {
 		//System.out.println("One Employee Added");
 		//service.findByDateOfBirth(LocalDate.of(1999,8,27)).forEach(System.out::println);//find by date of birth
 		//service.findByLocation("Navalur Chennai").forEach(System.out::println);
-		service.findBySkill("Java Developer").forEach(System.out::println);
+		//service.findBySkill("Java Developer").forEach(System.out::println);
+	  //service.findBylocationskill_set("Navalur Chennai","Java Developer").forEach(System.out::println);
+	  service.findBySkillSetOrLocation("SQL Developer","Navalur Chennai").forEach(System.out::println);
+
+	//}, skillname)("Navalur Chennai","Java Developer");
 	//}
 	//}
 	//@Bean
