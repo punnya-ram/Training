@@ -8,12 +8,13 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.Driver;
 import com.example.demo.repo.DriverRepository;
+import org.springframework.data.domain.Sort;
 
 
 
 @Service
 public class DriverService {
-	@Autowired
+	
 	private DriverRepository repo;
 
 	public List<Driver> findAll() {
@@ -25,7 +26,7 @@ public class DriverService {
 		// TODO Auto-generated method stub
 		return this.repo.save(entity);
 	}
-
+	@Autowired
 	public DriverService(DriverRepository repo) {
 		super();
 		this.repo = repo;
@@ -68,6 +69,22 @@ public class DriverService {
 			throw new NoSuchElementException("Element with Id="+entity.getId()+"Not Present");
 		}
 		return entity;
+	}
+	public List<Driver>findByDriverName(String srchName){
+		return this.repo.findByDriverName(srchName);
+	}
+	public List<Driver>srchByPhoneNumber(long number){
+		return this.repo.findByphoneNumber(number);
+	}
+	public List<Driver>srchByDriverRating(double rating){
+		return this.repo.searchByRating(rating);
+		
+	}
+	public int updateRating(int id,double updatedRating) {
+		return this.repo.modifyRating(id, updatedRating);
+	}
+	public List<Driver>sortedList(String propName){
+		return this.repo.findAll(Sort.by(propName));
 	}
         
 		

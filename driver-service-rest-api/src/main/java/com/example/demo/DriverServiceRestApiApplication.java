@@ -9,7 +9,11 @@ import org.springframework.context.annotation.Bean;
 import com.example.demo.entity.Driver;
 import com.example.demo.repo.DriverRepository;
 
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Info;
+
 @SpringBootApplication
+@OpenAPIDefinition(info=@Info(title="Driver Server -API",version="1.0"))
 public class DriverServiceRestApiApplication {
 
 	public static void main(String[] args) {
@@ -23,7 +27,7 @@ public class DriverServiceRestApiApplication {
 
 			@Override
 			public void run(String... args) throws Exception {
-				repo.save(new Driver(102,"damu",2468754,4.2));				
+				repo.save(new Driver(109,"jack",2468754,4.2));				
 			}
 			
 		};
