@@ -1,3 +1,4 @@
+
 package com.example.demo;
 
 
@@ -26,7 +27,7 @@ public class SpringDataJpaOne2manyApplication {
 	@Bean
 	public Doctor munna() {
 		Doctor doc=new Doctor();
-		doc.setDoctorId(2020);
+		doc.setDoctorId(2029);
 		doc.setDoctorName("Munna");
 		doc.setPhoneNumber(90866);
 		doc.setDepartment("muscular");
@@ -34,15 +35,15 @@ public class SpringDataJpaOne2manyApplication {
 	}
 	@Bean
 	public Patient kavi() {
-		return new Patient(201, "kavitha", 89790);
+		return new Patient(209, "kavitha", 89790);
 	}
 	@Bean
 	public Patient pavi() {
-		return new Patient(202, "pavithra", 98970);
+		return new Patient(208, "pavithra", 98970);
 	}
 	@Bean
 	public Patient magi() {
-		return new Patient(203, "malathy", 78970);
+		return new Patient(207, "malathy", 78970);
 	}
 
 }
