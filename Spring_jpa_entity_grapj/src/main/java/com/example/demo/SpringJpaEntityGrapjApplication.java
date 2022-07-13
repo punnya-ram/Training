@@ -22,8 +22,7 @@ public class SpringJpaEntityGrapjApplication {
 		service.task4();
 		ctx.close();
 	}
-	//@Bean
-//	//commandlinerunner is a interface which has one method ie functional interface
+	//@Bean a interface which has one method ie functional interface
 //	public CommandLineRunner runner() {
 //		
 //		return new CommandLineRunner() {
@@ -47,6 +46,7 @@ public class SpringJpaEntityGrapjApplication {
 //				
 //				
 //				
+//	commandlinerunner is
 //			}
 //		};
 //		
